@@ -35,7 +35,7 @@ def generate_samples(n_samples, seed=None):
     }
 
 
-def run_mock_simulation(n_samples, mag_source=26.0, maxmium_magnitude=26.5, zl=0.3, zs=2.0):
+def run_mock_simulation(n_samples, mag_source=26.0, maximum_magnitude=26.5, zl=0.3, zs=2.0):
     beta_scalefree_samp = np.random.rand(n_samples)**0.5
     alpha_sps = np.random.normal(loc=1.2, scale=0.2, size=n_samples)
     logalpha_sps_sample = np.log10(alpha_sps)
@@ -49,7 +49,7 @@ def run_mock_simulation(n_samples, mag_source=26.0, maxmium_magnitude=26.5, zl=0
             'logRe': [samples['logRe'][i]],
             'beta_unit': [beta_scalefree_samp[i]],
             'mag_source': [mag_source],
-            'maxmium_magnitude': [maxmium_magnitude],
+            'maximum_magnitude': [maximum_magnitude],
             'logalpha_sps': [logalpha_sps_sample[i]],
             'zl': [zl],
             'zs': [zs]

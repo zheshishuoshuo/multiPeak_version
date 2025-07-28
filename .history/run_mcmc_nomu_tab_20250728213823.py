@@ -267,7 +267,7 @@ def observed_data(input_df, caustic= False):
    计算 lens 的属性，并返回包含源属性的字典
    """
    mag_source = input_df['mag_source'].values[0]  # [mag]
-   maximum_magnitude = input_df['maximum_magnitude'].values[0]  # [mag]
+   maxmium_magnitude = input_df['maxmium_magnitude'].values[0]  # [mag]
    beta_unit = input_df['beta_unit'].values[0]  # [kpc]
    logalpha_sps = input_df['logalpha_sps'].values[0]
    logM_star = input_df['logM_star'].values[0]  # [Msun]
@@ -287,7 +287,7 @@ def observed_data(input_df, caustic= False):
    magnitude_observedB = mag_source - 2.5 * np.log10(properties['magnificationB']) + np.random.normal(loc=0.0, scale=scatter_mag)
 
    # no observed error
-   if magnitude_observedA > maximum_magnitude or magnitude_observedB > maximum_magnitude:
+   if magnitude_observedA > maxmium_magnitude or magnitude_observedB > maxmium_magnitude:
        properties['is_lensed'] = False
    else:
        properties['is_lensed'] = True
@@ -296,7 +296,7 @@ def observed_data(input_df, caustic= False):
    properties['magnitude_observedA'] = magnitude_observedA  # [mag]
    properties['magnitude_observedB'] = magnitude_observedB  # [mag]
    properties['mag_source'] = mag_source  # [mag]
-   properties['maximum_magnitude'] = maximum_magnitude  # [mag]
+   properties['maxmium_magnitude'] = maxmium_magnitude  # [mag]
    properties['beta_unit'] = beta_unit  # [kpc]
    properties['logalpha_sps'] = logalpha_sps  # [Msun]
    properties['logM_star'] = model.logM_star
@@ -344,7 +344,7 @@ lens_results = []
 
 # 常数参数（可替换为数组）
 mag_source = 26
-maximum_magnitude = 26.5
+maxmium_magnitude = 26.5
 zl = 0.3
 zs = 2.0
 
@@ -364,7 +364,7 @@ for logM_star, logMh, logRe, logalpha_sps, beta_unit in tqdm(zip(
         'logRe': [logRe],
         'beta_unit': [beta_unit],
         'mag_source': [mag_source],
-        'maximum_magnitude': [maximum_magnitude],
+        'maxmium_magnitude': [maxmium_magnitude],
         'logalpha_sps': [logalpha_sps],
         'zl': [zl],
         'zs': [zs]
