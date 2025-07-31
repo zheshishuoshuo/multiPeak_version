@@ -4,7 +4,6 @@ from lens_solver import solve_lens_parameters_from_obs, compute_detJ
 from cached_A import cached_A_interp
 from scipy.stats import norm
 import numpy as np
-from cached_A import safe_round
 # def log_prior(eta): ...
 # def log_likelihood(...): ...
 # def log_posterior(...): ...
@@ -100,7 +99,7 @@ def __log_likelihood(
         return -np.inf
 
     try:
-        A_eta = cached_A_interp(safe_round(mu_DM), safe_round(sigma_DM))
+        A_eta = cached_A_interp(mu_DM, sigma_DM)
         if not np.isfinite(A_eta) or A_eta <= 0:
             print(f"[WARN] 非法 A_eta: {A_eta} for eta = {eta}")
             return -np.inf
@@ -173,7 +172,7 @@ def log_likelihood(eta, **kwargs):
         return -np.inf
 
     try:
-        A_eta = cached_A_interp(safe_round(mu_DM), safe_round(sigma_DM))
+        A_eta = cached_A_interp(mu_DM, sigma_DM)
         if not np.isfinite(A_eta) or A_eta <= 0:
             return -np.inf
     except Exception:

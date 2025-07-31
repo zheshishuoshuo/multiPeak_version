@@ -1,4 +1,3 @@
-from functools import lru_cache
 import numpy as np
 import pandas as pd
 from scipy.interpolate import RegularGridInterpolator
@@ -20,7 +19,7 @@ def load_A_phys_interpolator(filename='A_phys_table.csv'):
     return interp
 
 
-prec = 'low'  # 默认精度
+prec = 'high'  # 默认精度
 
 if prec == 'low':
     A_interp = load_A_phys_interpolator("A_phys_table100.csv")
@@ -28,12 +27,7 @@ elif prec == 'high':
     A_interp = load_A_phys_interpolator("A_phys_table1000.csv")
 
 
-# === 安全取整，避免缓存 key 精度差异 ===
-def safe_round(x, ndigits=4):
-    return round(float(x), ndigits)
-
-# === 缓存包装的 A_interp ===
-@lru_cache(maxsize=512)
+# === A_interp wrapper ===
 def cached_A_interp(mu_DM, sigma_DM):
 
     return A_interp((mu_DM, sigma_DM))
